@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="Ilias Trichopoulos">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <link type="text/css" rel="stylesheet" href="/static/css/libs/semantic.css" />
+        {% assets "scss_all" %}
+            <link type="text/css" rel="stylesheet" href="{{ ASSET_URL }}">
+        {% endassets %}
+
+        <link rel="shortcut icon" href="/static/icons/favicon.ico">
+
+        <script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+
+        <nav class="ui fixed large menu navbar">
+            <a href="{{ url_for('home') }}" class="brand item">Project Name</a>
+            {%- for item in current_menu.children -%}
+                <a href="{{ item.url}}" class="item {% if item.active %}active{% endif%}">{{ item.text }}</a>
+            {%- endfor -%}
+        </nav>
+
+        <main class="ui page grid">
+            <div class="row">
+                {% block page %}{% endblock %}
+            </div>
+        </main>
+          
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/static/js/libs/jquery-1.11.3.min.js"><\/script>')</script>
+        <script defer src="/static/js/libs/semantic.min.js"></script>
+        <script defer src="/static/js/plugins.js"></script>
+        <script defer src="/static/js/script.js"></script>
+        <!-- Google Analytics - Change UA-XXXXX-X to be your site's ID -->
+        <script>
+        window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+        Modernizr.load({
+          load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+        });
+        </script>
+
+    </body>
+</html>
